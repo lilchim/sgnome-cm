@@ -1,6 +1,6 @@
 services:
   steamapi:
     image: 'sgnomesteamapiproxyfastify'
-    ports: [3000:3000]
+    ports: [65300:3000]
     environment:
       STEAM_API_KEY: ${STEAM_API_KEY}
