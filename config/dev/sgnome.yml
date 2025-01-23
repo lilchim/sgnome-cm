@@ -1,6 +1,20 @@
 services:
   steamapi:
-    image: 'sgnomesteamapiproxyfastify'
+    image: 'docker.io/awc89/sgnome-steam-api-proxy:latest'
     ports: [65300:3000]
+    networks:
+      - sgnome
     environment:
       STEAM_API_KEY: ${STEAM_API_KEY}
+  steamgateway:
+    image: 'docker.io/awc89/sgnome-steam-api-gateway:latest'
+    ports: [65301:3000]
+    networks:
+      - sgnome
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      STEAM_API_URL: ${STEAM_API_URL}
+
+networks:
+  sgnome:
+    driver: bridge

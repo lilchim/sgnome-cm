@@ -3,15 +3,23 @@ services:
     image: redis/redis-stack:latest
     ports:
       - "6379:6379"
+    networks:
+      - sgnome
     volumes:
       - redis_data:/data
   redis-insight:
     image: redis/redisinsight:latest
     ports:
       - "5540:5540"
+    networks:
+      - sgnome
     volumes:
       - redisinsight:/data   
 
 volumes:
   redis_data:
   redisinsight:
+
+networks:
+  sgnome:
+    driver: bridge
